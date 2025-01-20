@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8d7e1; /* Pastel pink background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #5f4b66;
+            text-align: center;
+        }
+
+        /* The dialog box container */
+        #dialogBox {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #f3a9b5;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: #d36b8d; /* Dark pink */
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #5f4b66;
+            margin: 10px 0;
+        }
+
+        .subtext {
+            font-size: 1rem;
+            color: #d36b8d; /* Darker pink subtext */
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        button {
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            background-color: #f3a9b5;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #f5b0bc;
+        }
+
+        /* Disabled button style */
+        button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div id="dialogBox">
+        <h1>Will you be my Valentine?</h1>
+        <p>Every moment with you is special. Will you say yes?</p>
+        <button onclick="response(true)">Yes</button>
+        <button onclick="response(false)">No</button>
+    </div>
+
+    <script>
+        let questionCount = 0;
+
+        // Function to handle Yes and No responses
+        function response(answer) {
+            if (answer) {
+                alert("Yay! I love you so much baby!");
+            } else {
+                questionCount++;
+                if (questionCount === 1) {
+                    updateDialog("Are you sure?", "Yes", "No", "I really hope you say yes.");
+                } else if (questionCount === 2) {
+                    updateDialog("Really sure?", "Yes", "No", "Please, don't break my heart.");
+                } else if (questionCount === 3) {
+                    updateDialog("Please?", "Yes", "No", "You're my everything. Don't make me wait too long.");
+                } else if (questionCount === 4) {
+                    updateDialog("Please :(", "Yes", "No", "I really need you to say yes.");
+                } else if (questionCount === 5) {
+                    updateDialog("I really need you to say yes.", "Yes", "Yes", "I really need you to say yes.");
+                }
+            }
+        }
+
+        // Function to update dialog based on responses
+        function updateDialog(questionText, yesText, noText, subtext) {
+            const dialog = document.getElementById('dialogBox');
+            dialog.querySelector('h1').textContent = questionText;
+            const buttons = dialog.querySelectorAll('button');
+
+            dialog.querySelector('p').textContent = subtext;
+            buttons[0].textContent = yesText;
+            buttons[1].textContent = noText;
+        }
+    </script>
+</body>
+</html>
+
